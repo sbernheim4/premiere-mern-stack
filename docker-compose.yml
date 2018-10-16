@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  budgeteer:
+    build: .
+    environment:
+      - FORCE_COLOR=1
+    env_file:
+      - .env
+    ports:
+      - "443:5000"
+    volumes:
+      - ./:/usr/workdir

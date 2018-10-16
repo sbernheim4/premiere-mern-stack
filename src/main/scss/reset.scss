@@ -1,0 +1,20 @@
+/**************************************************************************/
+
+/* My Stuff */
+
+* {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	font-family: 'Lato', sans-serif;
+	border: none;
+	border-radius: 0;
+}
+
+body {
+	min-height: 100vh; // Must be min-height to allow for infinte scrolling on the /transactions page
+}
+
+h1, h2, h3, h4, h5, h6 {
+	overflow-y: hidden;
+}
