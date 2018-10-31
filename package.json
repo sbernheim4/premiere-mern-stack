@@ -23,6 +23,7 @@
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.3.1",
     "babel-loader": "^8.0.4",
+    "concurrently": "^4.0.1",
     "css-loader": "^1.0.1",
     "cssnano": "^4.1.7",
     "eslint": "^5.8.0",
@@ -47,10 +48,10 @@
     "node": ">=8.9.3"
   },
   "scripts": {
-    "build:prod": "webpack --config webpack.prod.js",
     "build:dev": "webpack --config webpack.dev.js",
-    "start": "./node_modules/.bin/webpack-dev-server --open --hot --config webpack.dev.js",
-    "start-server": "npm run build:prod; export NODE_ENV=production && nodemon server/index.js",
-    "docker": "docker-compose up"
+    "build:prod": "webpack --config webpack.prod.js",
+    "server": "nodemon server/index.js",
+    "start": "concurrently \"npm run wds\" \"npm run server\"",
+    "wds": "./node_modules/.bin/webpack-dev-server --open --hot --config webpack.dev.js"
   }
 }

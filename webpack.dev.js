@@ -41,6 +41,9 @@ module.exports = {
 
 	devServer: {
 		contentBase: path.join(__dirname, './public'),
+		proxy: {
+			"/api": "http://localhost:3000"
+		}
 		// hot: true // Only reloads the component that changed. When set to false all components are reloaded (but page is not refreshed)
 	},
 
