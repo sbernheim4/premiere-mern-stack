@@ -32,6 +32,8 @@ module.exports = {
 			}
 		]
 	},
+
+	mode: process.env.NODE_ENV || 'development',
 	
 	resolve: {
 		extensions: ["*", ".js", "jsx", ".scss"] // allows me to leave off the extension when importing - import File from '../path/to/file'
@@ -39,6 +41,7 @@ module.exports = {
 
 	devServer: {
 		contentBase: path.join(__dirname, './public'),
+		// hot: true // Only reloads the component that changed. When set to false all components are reloaded (but page is not refreshed)
 	},
 
 	plugins: [

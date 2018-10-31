@@ -38,9 +38,13 @@ module.exports = {
 			}
 		]
 	},
+	
+	mode: 'production',
+
 	resolve: {
 		extensions: [".js", "jsx", ".scss"]
 	},
+	
 	plugins: [
 		// Optimizes css by minifying it and removing comments
 		new OptimizeCssAssetsPlugin({
@@ -51,10 +55,6 @@ module.exports = {
 
 		// Uglify JS
 		new UglifyJsPlugin(),
-
-		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify('production')
-		}),
 
 		new WebpackBar()
 	]
