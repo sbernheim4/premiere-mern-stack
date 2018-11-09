@@ -25,6 +25,11 @@ module.exports = class extends Generator {
 				message : 'Description:',
 			},
 			{
+				name: 'name',
+				message: "Author's name:",
+				default: gitName
+			},
+			{
 				name: 'email',
 				message: "Author's email:",
 				default: this.user.git.email()
@@ -44,7 +49,7 @@ module.exports = class extends Generator {
 						value: 'css'
 					},
 					{
-						name: 'SCSS',
+						name: 'SCSS/SASS',
 						value: 'scss'
 					},
 					{
@@ -58,13 +63,14 @@ module.exports = class extends Generator {
 				type: 'confirm',
 				message: "Would you like to use stylelint:"
 			}
-		])
+		]);
 
-		const {
-			repoName, description, email, githubUsername, cssPreprocessor, stylelint
-		} = this.answers
+		this.tpl = {};
+		this.tpl.repoName = this.answers.repoName;
+		this.tpl.description = this.answers.description
+		this.tpl.email = this.answers.email;
+		this.tpl.name = this.answers.name;
 
-		this.log(repoName, description, email, githubUsername, cssPreprocessor, stylelint);
 		this.spawnCommand('git', ['init', '--quiet']); // Initialize Git repo
 	}
 
@@ -72,6 +78,7 @@ module.exports = class extends Generator {
 		// Helper function that moves files from one location to another
 		const mv = (from, to) => this.fs.move(this.destinationPath(from), this.destinationPath(to));
 
+		// Base dependencies and devDependencies for package.json
 		const pkgJson = {
 			devDependencies: {
 				"@babel/core": "^7.1.2",
@@ -91,11 +98,7 @@ module.exports = class extends Generator {
 				"nodemon": "^1.12.5",
 				"optimize-css-assets-webpack-plugin": "^5.0.1",
 				"postcss-loader": "^3.0.0",
-				"sass-loader": "^7.1.0",
 				"style-loader": "^0.23.1",
-				"stylelint": "^9.7.1",
-				"stylelint-order": "^1.0.0",
-				"stylelint-webpack-plugin": "^0.10.5",
 				"uglifyjs-webpack-plugin": "^2.0.1",
 				"webpack": "^4.23.1",
 				"webpack-cli": "^3.1.2",
@@ -119,7 +122,44 @@ module.exports = class extends Generator {
 			}
 		};
 
-		// Extend or create package.json file in destination path
 		this.fs.extendJSON(this.destinationPath('package.json'), pkgJson);
+
+		// Check for stylelint
+		if (this.answers.stylelint) {
+			console.log(chalk.blue("Installing stylelint!!!"));
+			this.fs.extendJSON(this.destinationPath('package.json'), {
+				devDependencies: {
+					"stylelint": "^9.7.1",
+					"stylelint-order": "^1.0.0",
+					"stylelint-webpack-plugin": "^0.10.5"
+				}
+			});
+		}
+
+		// Check CSS Preprocessor
+		if (this.answers.cssPreprocessor === 'SCSS') {
+			this.fs.extendJSON(this.destinationPath('package.json'), {
+				devDependencies: {
+					"sass-loader": "^7.1.0",
+				}
+			});
+		} else if(this.answers.cssPreprocessor === 'LESS') {
+			this.fs.extendJSON(this.destinationPath('package.json'), {
+				devDependencies: {
+					"less-loader": "^4.1.0",
+				}
+			});
+		}
+
+		this.fs.copyTpl(
+			`${this.templatePath()}/**/*`,
+			this.destinationPath(this.destinationRoot()), this.tpl,
+			undefined,
+			{ globOptions: { dot: true } }
+		);
+	}
+
+	install() {
+		this.npmInstall();
 	}
 }
