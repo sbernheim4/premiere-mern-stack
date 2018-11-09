@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import Navbar from "../Navbar/Navbar.jsx";
 import Home from "../Home/Home.jsx";
 
-class App extends Component {
+class Routes extends Component {
 	constructor(props) {
 		super(props);
 
@@ -29,4 +29,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default Routes;

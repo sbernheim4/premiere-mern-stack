@@ -17,7 +17,7 @@ class Navbar extends Component {
 			<nav className='navbar'>
 				<Link id="mian" to='/'>Home</Link>
 
-				<hr	/>
+				<hr/>
 
 				<Link to='/'>Lorem</Link>
 				<Link to='/'>Ipsum</Link>
