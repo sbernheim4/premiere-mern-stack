@@ -53,7 +53,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			base: './public/',
-			template: 'index.js',
+			template: 'HTMLTemplate.js',
 			dest: 'index.html',
 			inject: false,
 			title: 'React Stack V2'

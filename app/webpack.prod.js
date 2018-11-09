@@ -55,14 +55,14 @@ module.exports = {
 	},
 
 	plugins: [
-        new HtmlWebpackPlugin({
-            base: './public/',
-            template: 'index.js',
-            dest: 'index.html',
-            inject: false,
-            title: 'React Stack V2',
-            message: 'Welcome'
-        }),
+		new HtmlWebpackPlugin({
+			base: './public/',
+			template: 'HTMLTemplate.js',
+			dest: 'index.html',
+			inject: false,
+			title: 'React Stack V2',
+			message: 'Welcome'
+		}),
 
 		// Optimizes css by minifying it and removing comments
 		new OptimizeCssAssetsPlugin({
@@ -75,6 +75,6 @@ module.exports = {
 		new UglifyJsPlugin(),
 
 		new WebpackBar()
-    ]
+	]
 };
 
