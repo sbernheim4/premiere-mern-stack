@@ -1,11 +1,19 @@
+const path = require('path');
+
+/* Used to generate html file from template */
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 /* Used to minify the css after it has been written to its output file */
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
 const nano = require("cssnano");
+
+/* Used to inline above the fold CSS */
+const HtmlCriticalWebpackPlugin = require("html-critical-webpack-plugin");
 
 /* Used to uglify bundle.js */
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const webpack = require('webpack');
 
 const WebpackBar = require('webpackbar');
 
@@ -27,7 +35,7 @@ module.exports = {
 				exclude: /node_modules/,
 				use: ["babel-loader"],
 			},
-			
+
 			// use sass-loader, css-loader, and style-loader for all scss files
 			//    sass-loader - converts scss to css
 			// postcss-loader - runs postcss using postcss.config.js to handle external tools like autoprefixer
@@ -39,14 +47,23 @@ module.exports = {
 			}
 		]
 	},
-	
+
 	mode: 'production',
 
 	resolve: {
 		extensions: [".js", "jsx", ".scss"]
 	},
-	
+
 	plugins: [
+        new HtmlWebpackPlugin({
+            base: './public/',
+            template: 'index.js',
+            dest: 'index.html',
+            inject: false,
+            title: 'React Stack V2',
+            message: 'Welcome'
+        }),
+
 		// Optimizes css by minifying it and removing comments
 		new OptimizeCssAssetsPlugin({
 			cssProcessor: nano,
@@ -58,6 +75,6 @@ module.exports = {
 		new UglifyJsPlugin(),
 
 		new WebpackBar()
-	]
+    ]
 };
 

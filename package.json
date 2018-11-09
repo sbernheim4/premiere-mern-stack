@@ -29,6 +29,7 @@
     "eslint": "^5.8.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-react": "^7.5.1",
+    "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.2",
     "nodemon": "^1.12.5",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
@@ -48,10 +49,13 @@
     "node": ">=8.9.3"
   },
   "scripts": {
+    "start": "concurrently \"npm run wds\" \"npm run server\"",
+    "wds": "./node_modules/.bin/webpack-dev-server --open --hot --config webpack.dev.js",
+    "server": "nodemon --watch server server/index.js",
     "build:dev": "webpack --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js",
-    "server": "nodemon --watch server server/index.js",
-    "start": "concurrently \"npm run wds\" \"npm run server\"",
-    "wds": "./node_modules/.bin/webpack-dev-server --open --hot --config webpack.dev.js"
+    "lint": "npm run lintServer; npm run lintCSS",
+    "lintServer": "node_modules/.bin/eslint --fix server/",
+    "lintCSS": "node_modules/.bin/stylelint --fix src/**/*"
   }
 }

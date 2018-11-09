@@ -1,7 +1,10 @@
 const path = require('path');
+/* Used to generate html file from template */
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-/* Used to ensure proper order of CSS */
+/* Used to ensure proper order of SCSS/CSS */
 const StyleLintPlugin = require("stylelint-webpack-plugin");
+
 const WebpackBar = require('webpackbar');
 
 module.exports = {
@@ -34,7 +37,7 @@ module.exports = {
 	},
 
 	mode: process.env.NODE_ENV || 'development',
-	
+
 	resolve: {
 		extensions: ["*", ".js", "jsx", ".scss"] // allows me to leave off the extension when importing - import File from '../path/to/file'
 	},
@@ -48,6 +51,14 @@ module.exports = {
 	},
 
 	plugins: [
+		new HtmlWebpackPlugin({
+			base: './public/',
+			template: 'index.js',
+			dest: 'index.html',
+			inject: false,
+			title: 'React Stack V2'
+		}),
+
 		// CSS Linter based on rules set in the .stylelintrc file
 		new StyleLintPlugin({
 			configFile: "./.stylelintrc",

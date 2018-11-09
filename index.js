@@ -1,10 +1,12 @@
+export default function (templateConfig) {
+        const { title, message } = templateConfig.htmlWebpackPlugin.options;
 
-
+    return `
         <!DOCTYPE html>
         <html lang="en">
             <head>
                 <meta charset="UTF-8" />
-                <title>React Stack V2</title>
+                <title>${title}</title>
 
                 <!-- Google Fonts -->
                 <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet preload">
@@ -28,10 +30,9 @@
                     <h1>Please Enable JS in your browser in order to continue</h1>
                 </noscript>
 
-                <h1>Welcome</h1>
-
                 <div id='root'></div>
                 <script src='/main.js'></script>
             </body>
         </html>
-    
+    `;
+}
