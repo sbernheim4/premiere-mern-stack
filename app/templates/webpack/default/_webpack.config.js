@@ -9,6 +9,9 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const nano = require("cssnano");
 
+/* Used to ensure proper order of SCSS/CSS */
+const StyleLintPlugin = require("stylelint-webpack-plugin");
+
 /* Used to inline above the fold CSS */
 const HtmlCriticalWebpackPlugin = require("html-critical-webpack-plugin");
 
@@ -75,6 +78,13 @@ module.exports = {
             cssProcessorOptions: {discardComments: {removeAll: true} },
             canPrint: true
         }),
+
+        // CSS Linter based on rules set in the .stylelintrc file
+        new StyleLintPlugin({
+            configFile: "./.stylelintrc",
+            files: "./src/scss/*.scss"
+        }),
+
 
         // Uglify JS
         new UglifyJsPlugin(),
