@@ -2,6 +2,15 @@ const path = require('path');
 /* Used to generate html file from template */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+/* Used to minify the css after it has been written to its output file */
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
+// the package used to perform the css minification
+const nano = require("cssnano");
+
+/* Used to uglify bundle.js */
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 /* Used to ensure proper order of SCSS/CSS */
 const StyleLintPlugin = require("stylelint-webpack-plugin");
 
@@ -64,6 +73,16 @@ module.exports = {
 			configFile: "./.stylelintrc",
 			files: "./src/scss/*.scss"
 		}),
+
+		// Optimizes css by minifying it and removing comments
+		new OptimizeCssAssetsPlugin({
+			cssProcessor: nano,
+			cssProcessorOptions: {discardComments: {removeAll: true} },
+			canPrint: true
+		}),
+
+		// Uglify JS
+		new UglifyJsPlugin(),
 
 		new WebpackBar()
 	]
