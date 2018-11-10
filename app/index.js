@@ -83,11 +83,13 @@ module.exports = class extends Generator {
 			}}
 		);
 
+		// Helper function that moves files from one location to another
+		// const mv = (from, to) => this.fs.move(this.destinationPath(from), this.destinationPath(to));
+
 		let webpackFilePath = path.join(__dirname, './templates/webpack/default/_webpack.config.js');
 
 		// Check CSS Preprocessor
 		if (this.answers.cssPreprocessor === 'scss') {
-
 			this.fs.extendJSON(this.destinationPath('package.json'), {
 				devDependencies: {
 					"sass-loader": "^7.1.0",
@@ -118,15 +120,11 @@ module.exports = class extends Generator {
 	}
 
 	end() {
-        const logCyan = text => this.log(chalk.cyan(text));
+		const logCyan = text => this.log(chalk.cyan(text));
 
-        this.spawnCommand('git', ['add', '.']);
-        this.spawnCommand('git', ['commit', '-qnm', "Initial commit"]);
+		console.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
+		logCyan('Package successfully generated');
+		console.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
 
-        console.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
-        logCyan('Package successfully generated');
-        console.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
-
-        this.spawnCommand('npm start');
-    }
+	}
 }

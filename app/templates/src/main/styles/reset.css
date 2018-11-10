@@ -12,7 +12,7 @@
 }
 
 body {
-	min-height: 100vh; // Must be min-height to allow for infinte scrolling on the /transactions page
+	min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
