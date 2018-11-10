@@ -83,14 +83,10 @@ module.exports = class extends Generator {
 			}}
 		);
 
-		// Helper function that moves files from one location to another
-		// const mv = (from, to) => this.fs.move(this.destinationPath(from), this.destinationPath(to));
-
 		let webpackFilePath = path.join(__dirname, './templates/webpack/default/_webpack.config.js');
 
 		// Check CSS Preprocessor
 		if (this.answers.cssPreprocessor === 'scss') {
-			console.log(chalk.red("Adding sass-loader as dev dependency"));
 
 			this.fs.extendJSON(this.destinationPath('package.json'), {
 				devDependencies: {
@@ -115,6 +111,22 @@ module.exports = class extends Generator {
 	}
 
 	install() {
-		// this.npmInstall();
+		const logGreen = text => this.log(chalk.cyan(text));
+
+		logGreen("Installing dependencies... this might take some time");
+		this.npmInstall();
 	}
+
+	end() {
+        const logCyan = text => this.log(chalk.cyan(text));
+
+        this.spawnCommand('git', ['add', '.']);
+        this.spawnCommand('git', ['commit', '-qnm', "Initial commit"]);
+
+        console.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
+        logCyan('Package successfully generated');
+        console.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
+
+        this.spawnCommand('npm start');
+    }
 }
