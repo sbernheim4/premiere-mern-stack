@@ -1,6 +1,9 @@
+const path = require('path');
+const fs = require('fs');
 const Generator = require('yeoman-generator');
 const shell = require('shelljs');
 const chalk = require('chalk');
+const merge = require('webpack-merge');
 
 module.exports = class extends Generator {
 	// The name `constructor` is important here
@@ -71,7 +74,7 @@ module.exports = class extends Generator {
 		this.tpl.email = this.answers.email;
 		this.tpl.name = this.answers.name;
 
-		this.spawnCommand('git', ['init', '--quiet']); // Initialize Git repo
+		// this.spawnCommand('git', ['init', '--quiet']); // Initialize Git repo
 	}
 
 	writing() {
@@ -122,6 +125,8 @@ module.exports = class extends Generator {
 			}
 		};
 
+		let webpackFilePath = path.join(__dirname, './templates/webpack/default/_webpack.config.js');
+
 		this.fs.extendJSON(this.destinationPath('package.json'), pkgJson);
 
 		// Check for stylelint
@@ -137,26 +142,38 @@ module.exports = class extends Generator {
 		}
 
 		// Check CSS Preprocessor
-		if (this.answers.cssPreprocessor === 'SCSS') {
+		if (this.answers.cssPreprocessor === 'scss') {
 			this.fs.extendJSON(this.destinationPath('package.json'), {
 				devDependencies: {
 					"sass-loader": "^7.1.0",
 				}
 			});
-		} else if(this.answers.cssPreprocessor === 'LESS') {
+
+			webpackFilePath = path.join(__dirname, './templates/webpack/scss/_webpack.config.js');
+		} else if(this.answers.cssPreprocessor === 'less') {
 			this.fs.extendJSON(this.destinationPath('package.json'), {
 				devDependencies: {
 					"less-loader": "^4.1.0",
 				}
 			});
+
+			webpackFilePath = path.join(__dirname, './templates/webpack/less/_webpack.config.js');
 		}
 
+		const webpackDest = path.resolve(this.destinationRoot(), 'webpack.config.js');
+
 		this.fs.copyTpl(
-			`${this.templatePath()}/**/*`,
-			this.destinationPath(this.destinationRoot()), this.tpl,
+			this.templatePath('**/*'),
+			this.destinationRoot(),
+			this.tpl,
 			undefined,
-			{ globOptions: { dot: true } }
+			{ globOptions: {
+				dot: true,
+				ignore: "_*.*"
+			}}
 		);
+
+		fs.copyFileSync(webpackFilePath, webpackDest);
 	}
 
 	install() {
