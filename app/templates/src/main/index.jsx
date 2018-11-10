@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import { BrowserRouter } from 'react-router-dom'
 
-import "./scss/reset.scss";
+import "./styles/reset.css";
 
 /* App is the entry point to the React code.*/
 import Routes from './Routes/Routes.jsx';

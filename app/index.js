@@ -88,8 +88,6 @@ module.exports = class extends Generator {
 
 		let webpackFilePath = path.join(__dirname, './templates/webpack/default/_webpack.config.js');
 
-		// this.fs.extendJSON(this.destinationPath('package.json'), pkgJson);
-
 		// Check CSS Preprocessor
 		if (this.answers.cssPreprocessor === 'scss') {
 			console.log(chalk.red("Adding sass-loader as dev dependency"));
