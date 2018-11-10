@@ -122,9 +122,9 @@ module.exports = class extends Generator {
 	end() {
 		const logCyan = text => this.log(chalk.cyan(text));
 
-		console.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
-		logCyan('Package successfully generated');
-		console.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
-
+		this.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
+		logCyan("Congrats! You're ready to go!");
+		logCyan("Run `npm start` to begin your premiere developer experience");
+		this.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
 	}
 }

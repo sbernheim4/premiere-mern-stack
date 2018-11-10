@@ -1,19 +1,19 @@
 # React Stack V2
 
-# Welcome. This is a getting started repo (almost like a yeoman generator) that gets you set up and ready to go with a MERN stack.
+# Welcome
 
 ## Key Features
 - Mongoose/MongoDB integration for both DB and session management
 - ExpressJS
 - ReactJS
   - React Router for Client Side Routing
-  - Easy Bundle Splitting set up 
-- Babel 7 
+  - Easy Bundle Splitting set up
+- Babel 7
 - Webpack 4
 - Auto Reload (HMR for CSS/SCSS)
 - SIMPLE
 
-This is a pretty simple bare bones stack but it does give you a lot of power to extend its structure more to your liking and to expand. 
+This is a pretty simple bare bones stack but it does give you a lot of power to extend its structure more to your liking and to expand.
 
 ## Getting Started
 1. Clone the repo

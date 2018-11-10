@@ -4,7 +4,7 @@ const chalk = require('chalk');
 mongoose.connect(process.env.DB_URI);
 const db = mongoose.connection;
 
-// Require our models -- these should register the model into mongoose
+// Require our models -- this will register the models into mongoose
 // so the rest of the application can simply call mongoose.model('User')
 // anywhere the User model needs to be used.
 require('./models');

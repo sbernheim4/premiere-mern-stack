@@ -59,8 +59,8 @@ app.get("*", (req, res) => {
 /****************** Start the DB (if DB_URI env var is set) and Server ******************/
 if (process.env.DB_URI && process.env.DB_URI !== '') {
 	require('./db').then(() => {
-		app.listen(process.env.PORT, () => {
-			console.log(chalk.green(`Listening on port ${process.env.PORT}`));
+		app.listen(PORT, () => {
+			console.log(chalk.green(`Listening on port ${PORT}`));
 		});
 	 }).catch(err => {
 		 console.log(err)
