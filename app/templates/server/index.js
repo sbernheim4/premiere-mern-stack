@@ -19,27 +19,39 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-/****************** DB Options ******************/
- app.use(session({
-	 secret: 'ENTER YOUR SECRET HERE FOR SESSIONS',
-	 resave: true,
-	 saveUninitialized: true,
-	 cookie: { maxAge: 600000 },
-	 store: new MongoStore({ mongooseConnection: mongoose.connection }) // Use mong to store sessions
- }));
+/****************** Sessions ******************/
+
+// If you have set `DB_URI` env var in your `.env` file then use that DB to store sessions
+if (process.env.DB_URI) {
+	app.use(session({
+		secret: 'ENTER YOUR SECRET HERE FOR SESSIONS',
+		resave: true,
+		saveUninitialized: true,
+		cookie: { maxAge: 600000 },
+		store: new MongoStore({ mongooseConnection: mongoose.connection }) // Use mong to store sessions
+	}));
+} else {
+	app.use(session({
+		secret: 'ENTER YOUR SECRET HERE FOR SESSIONS',
+		resave: true,
+		saveUninitialized: true,
+		cookie: { maxAge: 600000 }
+	}));
+}
 
 /****************** Server Options ******************/
-const cacheTime = 172800000; // 2 Days in ms
+const cacheTime = 172800000; // 2 Days in ms - Tells clients to cache static files
 
-app.use(helmet());
-app.use(compression());
-app.use(bodyParser.json())
+app.use(helmet()); // Sets headers for you by default
+app.use(compression()); // Enables gzip compression for your server
+app.use(bodyParser.json()) // Lets express handle JSON encoded data sent on the body of requests
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/****************** SERVE STATIC FILES --> JS, CSS, IMAGES ETC ******************/
+/****************** Serve Static Files --> JS, CSS, IMAGES ETC ******************/
 app.use(express.static(path.join(__dirname, '../public'), { maxAge: cacheTime } ));
 
-/****************** Handle Requests ******************/
+
+/****************** Log Requests ******************/
 app.all('*', (req, res, next) => {
 	console.log('--------------------------------------------------------------------------');
 	console.log(util.format(chalk.red('%s: %s %s'), 'REQUEST ', req.method, req.path));
@@ -49,9 +61,11 @@ app.all('*', (req, res, next) => {
 	next();
 });
 
+// Use api.js for any and all requests made to /api
 app.use('/api', require('./api.js'));
 
-// Server side 404 page - This should be the last get/put/post/delete/all/use call for app
+
+// Return a 404 page for all other requests - This should be the last get/put/post/delete/all/use call for app
 app.get("*", (req, res) => {
 	res.status(404).send(`<h1>404 Page Not Found</h1>`);
 });
@@ -66,7 +80,7 @@ if (process.env.DB_URI && process.env.DB_URI !== '') {
 		 console.log(err)
 	 });
 } else {
-	console.log(chalk.blue('process.env.DB_URI not found. Skipping opening connection to DB. Sessions are not being used'));
+	console.log(chalk.red('process.env.DB_URI is undefined (this should be set in your .env file).\nSkipping opening connection to DB.\nSessions are being stored in memory'));
 	app.listen(PORT, () => {
 		console.log(chalk.green(`Listening on port ${PORT}`));
 	});
