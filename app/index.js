@@ -116,13 +116,13 @@ module.exports = class extends Generator {
 		const logGreen = text => this.log(chalk.cyan(text));
 
 		logGreen("Installing dependencies... this might take some time");
-		// this.npmInstall();
+		this.npmInstall();
 	}
 
 	end() {
 		const webpackPath = this.destinationRoot() + "/webpack";
 
-		if( fs.existsSync(webpackPath) {
+		if (fs.existsSync(webpackPath)) {
 			fs.readdirSync(path).forEach((file) => {
 				const curPath = path + "/" + file;
 
@@ -135,11 +135,6 @@ module.exports = class extends Generator {
 
 			fs.rmdirSync(path);
 		}
-
-		// console.log(this.destinationRoot() + "/webpack");
-		rimraf(this.destinationRoot() + "/webpack", () => {
-
-		});
 
 		const logCyan = text => this.log(chalk.cyan(text));
 
