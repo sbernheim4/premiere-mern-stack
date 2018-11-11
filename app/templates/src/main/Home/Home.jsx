@@ -18,16 +18,16 @@ class Home extends Component {
 				<h2>Here's a list of awesome features that you have!</h2>
 
 				<ul>
-					<li>MERN Stack</li>
-					<li>React Router for Client Side Routing</li>
-					<li>Babel 7</li>
-					<li>Webpack 4</li>
-					<li>SASS</li>
-					<li>Webpack Dev Server (Plays nicely with express API server)</li>
-					<li>HMR for SASS/CSS changes</li>
-					<li>Live Reload for HTML/JS changes</li>
+					<li>MERN Stack 😎</li>
+					<li>React Router Client Side Routing</li>
+					<li>Babel 7 + Webpack 4</li>
+					<li>CSS/SASS/LESS</li>
+					<li>Webpack Dev Server + Express API Server</li>
+					<li>HMR for CSS/SASS/LESS</li>
+					<li>Live Reload for HTML/JS/JSX changes</li>
 					<li>ESLint</li>
 					<li>Stylelint</li>
+					<li>PostCSS + Autoprefixer</li>
 				</ul>
 			</div>
 		);
