@@ -41,3 +41,20 @@ root
     - postcss.config.js - Defines rules for PostCSS
     - webpack.config.js - Defines rules for webpack
 ```
+
+## Configuration
+There are many ways you can configure this stack to suit your specific needs.
+
+### Babel 
+- You can configure all your babel plugins via `.babelrc`
+
+### Stylelint
+- Set your preferred order for styles in `.stylelintrc` (achieved via stylelint-order package)
+- Whitelist or blacklist units that are allowed
+- [View more rules and plugins](https://stylelint.io/user-guide/plugins/)
+
+### ESLint
+- ESLint lets you customize and enforce certain rules for your JS code like
+- Enforcing `===` always instead of `==`
+- Disallowing use of `var` keyword
+- [View more rules for ESLint](https://eslint.org/docs/rules/)
