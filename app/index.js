@@ -79,12 +79,8 @@ module.exports = class extends Generator {
 			undefined,
 			{ globOptions: {
 				dot: true,
-				// ignore: "_webpack.config.js"
 			}}
 		);
-
-		// Helper function that moves files from one location to another
-		// const mv = (from, to) => this.fs.move(this.destinationPath(from), this.destinationPath(to));
 
 		let webpackFilePath = path.join(__dirname, './templates/webpack/default/_webpack.config.js');
 
@@ -122,19 +118,23 @@ module.exports = class extends Generator {
 	end() {
 		const webpackPath = this.destinationRoot() + "/webpack";
 
-		if (fs.existsSync(webpackPath)) {
-			fs.readdirSync(path).forEach((file) => {
-				const curPath = path + "/" + file;
+		function deleteFolderRecursive(path){
+			if (fs.existsSync(webpackPath)) {
+				fs.readdirSync(path).forEach((file) => {
+					const curPath = path + "/" + file;
 
-				if(fs.statSync(curPath).isDirectory()) { // recurse
-					deleteFolderRecursive(curPath);
-				} else { // delete file
-					fs.unlinkSync(curPath);
-				}
-			});
+					if(fs.statSync(curPath).isDirectory()) { // recurse
+						deleteFolderRecursive(curPath);
+					} else { // delete file
+						fs.unlinkSync(curPath);
+					}
+				});
 
-			fs.rmdirSync(path);
+				fs.rmdirSync(path);
+			}
 		}
+
+		deleteFolderRecursive(webpackPath)
 
 		const logCyan = text => this.log(chalk.cyan(text));
 
