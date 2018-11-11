@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  budgeteer:
+  react-stack:
     build: .
     environment:
       - FORCE_COLOR=1
