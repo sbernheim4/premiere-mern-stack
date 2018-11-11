@@ -11,9 +11,6 @@ const nano = require("cssnano");
 /* Used to ensure proper order of SCSS/CSS */
 const StyleLintPlugin = require("stylelint-webpack-plugin");
 
-/* Used to inline above the fold CSS */
-const HtmlCriticalWebpackPlugin = require("html-critical-webpack-plugin");
-
 /* Used to uglify bundle.js */
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -45,12 +42,12 @@ module.exports = {
 			// style-loader - injects the css into the browser in a style tag
 			{
 				test: /\.less$/,
-				use: ["style-loader", "css-loader", "less-loader"]
+				use: ["style-loader", "postcss-loader", "css-loader", "less-loader"]
 			},
 
 			{
 				test: /\.css$/,
-				use: ["style-loader", "css-loader"]
+				use: ["style-loader", "css-loader", "postcss-loader"]
 			}
 		]
 	},
