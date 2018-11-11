@@ -1,0 +1,19 @@
+.home {
+	margin-left: 60px;
+}
+
+.home h1 {
+	text-align: center;
+}
+
+.home h2 {
+	margin-bottom: 15px;
+}
+
+.home ul li {
+	font-size: 20px;
+}
+
+.home ul li:before {
+	content: "⭐ ";
+}

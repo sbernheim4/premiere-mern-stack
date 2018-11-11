@@ -1,14 +1,26 @@
+
 const path = require('path');
+
 /* Used to generate html file from template */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+/* Used to minify the css after it has been written to its output file */
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
+const nano = require("cssnano");
+
 /* Used to ensure proper order of SCSS/CSS */
 const StyleLintPlugin = require("stylelint-webpack-plugin");
+
+/* Used to uglify bundle.js */
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 const WebpackBar = require('webpackbar');
 
 module.exports = {
 	devtool: "source-map", // Enables source maps for both JS(X) and (S)CSS
+
 	entry: {
 		main: "./src/main/index.jsx", // Entry point of where webpack should start from
 	},
@@ -25,21 +37,20 @@ module.exports = {
 				exclude: /node_modules/,
 				use: ["babel-loader", "eslint-loader"],
 			},
-			// use sass-loader, css-loader, and style-loader for all scss files
-			// sass-loader - converts scss to css
+
+			// use css-loader, and style-loader for all scss files
 			// css-loader - allows for using import or require statements in the jsx
 			// style-loader - injects the css into the browser in a style tag
 			{
-				test: /\.scss$/,
-				use: ["style-loader", "css-loader", "sass-loader"]
+				test: /\.css$/,
+				use: ["style-loader", "css-loader", "postcss-loader"]
 			}
 		]
 	},
-
 	mode: process.env.NODE_ENV || 'development',
 
 	resolve: {
-		extensions: ["*", ".js", "jsx", ".scss"] // allows me to leave off the extension when importing - import File from '../path/to/file'
+		extensions: ['*', '.js', 'jsx', '.css', '.scss', '.sass']
 	},
 
 	devServer: {
@@ -47,16 +58,22 @@ module.exports = {
 		proxy: {
 			"/api": "http://localhost:3000"
 		}
-		// hot: true // Only reloads the component that changed. When set to false all components are reloaded (but page is not refreshed)
 	},
 
 	plugins: [
 		new HtmlWebpackPlugin({
 			base: './public/',
-			template: 'index.js',
+			template: 'HTMLTemplate.js',
 			dest: 'index.html',
 			inject: false,
 			title: 'React Stack V2'
+		}),
+
+		// Optimizes css by minifying it and removing comments
+		new OptimizeCssAssetsPlugin({
+			cssProcessor: nano,
+			cssProcessorOptions: {discardComments: {removeAll: true} },
+			canPrint: true
 		}),
 
 		// CSS Linter based on rules set in the .stylelintrc file
@@ -65,7 +82,10 @@ module.exports = {
 			files: "./src/scss/*.scss"
 		}),
 
+
+		// Uglify JS
+		new UglifyJsPlugin(),
+
 		new WebpackBar()
 	]
-};
-
+}

@@ -1,0 +1,43 @@
+@keyframes fade-in-right {
+	0% {
+		opacity: 0;
+		transform: translateX(-25px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes slide {
+	0% {
+		transform: scaleX(0);
+	}
+	100% {
+		transform: scaleX(1);
+	}
+}
+
+.navbar {
+	opacity: 0;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	animation: fade-in-right ease 0.6s forwards;
+}
+
+.navbar #main, .navbar a {
+	margin: 15px;
+	color: black;
+	text-decoration: none;
+}
+
+.navbar hr {
+	width: 60%;
+	height: 2px;
+	background-color: black;
+	transform: scaleX(0);
+	transform-origin: left;
+	animation: slide ease-in-out 0.5s forwards;
+	animation-delay: 0.6s;
+}
