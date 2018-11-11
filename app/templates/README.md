@@ -56,10 +56,10 @@ There are many ways you can configure this stack to suit your specific needs
 - Set your preferred order for styles in `.stylelintrc` (achieved via stylelint-order package)
 - Whitelist or blacklist units that are allowed
 - Control if tabs should be done with spaces or tabs
-- [And many more] (https://stylelint.io/user-guide/plugins/)
+- [And many more](https://stylelint.io/user-guide/plugins/)
 
 ### ESLint
 - ESLint lets you customize and enforce certain rules for your JS code like
 - Enforcing `===` always instead of `==`
 - Disallowing use of `var` keyword
-- [And many more] (https://eslint.org/docs/rules/)
+- [And many more](https://eslint.org/docs/rules/)
