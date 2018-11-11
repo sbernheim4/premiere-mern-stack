@@ -1,22 +1,36 @@
 {
   "name": "generator-premiere-mern-stack",
-  "author": "Samuel Bernheim",
-  "version": "0.1.2",
   "description": "A fully function MERN stack generator running on the latest and greatest thats easy to get started with",
+  "version": "0.1.2",
+  "author": "Samuel Bernheim",
+  "bugs": {
+    "url": "https://github.com/sbernheim4/premiere-mern-stack/issues"
+  },
   "dependencies": {
     "chalk": "^2.3.2",
     "yeoman-generator": "^3.1.1"
   },
-  "keywords": [
-    "yeoman-generator",
-    "react",
-    "expressjs",
-    "express",
-    "mern",
-    "mongodb",
-    "stack"
-  ],
+  "devDependencies": {},
   "files": [
     "app"
-  ]
+  ],
+  "homepage": "https://github.com/sbernheim4/premiere-mern-stack#readme",
+  "keywords": [
+    "express",
+    "expressjs",
+    "mern",
+    "mongodb",
+    "react",
+    "stack",
+    "yeoman-generator"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbernheim4/premiere-mern-stack.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
