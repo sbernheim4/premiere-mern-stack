@@ -1,6 +1,6 @@
 {
   "name": "generator-premiere-mern-stack",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dependencies": {
     "chalk": "^2.3.2",
     "yeoman-generator": "^3.1.1"
