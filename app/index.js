@@ -79,7 +79,7 @@ module.exports = class extends Generator {
 			undefined,
 			{ globOptions: {
 				dot: true,
-				// ignore: "_*"
+				// ignore: "_webpack.config.js"
 			}}
 		);
 
@@ -116,10 +116,31 @@ module.exports = class extends Generator {
 		const logGreen = text => this.log(chalk.cyan(text));
 
 		logGreen("Installing dependencies... this might take some time");
-		this.npmInstall();
+		// this.npmInstall();
 	}
 
 	end() {
+		const webpackPath = this.destinationRoot() + "/webpack";
+
+		if( fs.existsSync(webpackPath) {
+			fs.readdirSync(path).forEach((file) => {
+				const curPath = path + "/" + file;
+
+				if(fs.statSync(curPath).isDirectory()) { // recurse
+					deleteFolderRecursive(curPath);
+				} else { // delete file
+					fs.unlinkSync(curPath);
+				}
+			});
+
+			fs.rmdirSync(path);
+		}
+
+		// console.log(this.destinationRoot() + "/webpack");
+		rimraf(this.destinationRoot() + "/webpack", () => {
+
+		});
+
 		const logCyan = text => this.log(chalk.cyan(text));
 
 		this.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
