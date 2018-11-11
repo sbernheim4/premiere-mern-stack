@@ -7,11 +7,9 @@ This stack gets you up and running with dev absolutes. Webpack Dev Server for HM
 
 
 ## Getting Started
-Run `yo ultimate-mern-stack`
-
-To connect to MongoDB simply add to the `.env` file  `DB_URI=<YOUR_URI_HERE>`
-
-Run `npm start` to begin your premiere developer experience
+1. Run `yo ultimate-mern-stack`
+2. To connect to MongoDB simply add to the `.env` file  `DB_URI=<YOUR_URI_HERE>`
+3. Run `npm start` to begin your premiere developer experience
 
 ## Docker Support
 Out of the box you can dump your project into a docker image to deploy anywhere any way you like. 
