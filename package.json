@@ -1,10 +1,13 @@
 {
   "name": "generator-premiere-mern-stack",
+  "author": "Samuel Bernheim",
   "version": "0.1.1",
+  "description": "A fully function MERN stack generator running on the latest and greatest thats easy to get started with",
   "dependencies": {
     "chalk": "^2.3.2",
     "yeoman-generator": "^3.1.1"
   },
+  "keywords": ["yeoman-generator", "react", "expressjs", "express", "mern", "mongodb", "stack"],
   "files": [
     "app"
   ]
