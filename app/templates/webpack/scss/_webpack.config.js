@@ -17,7 +17,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WebpackBar = require('webpackbar');
 
 module.exports = {
-	devtool: "source-map", // Enables source maps for both JS(X) and (S)CSS
+	devtool: "eval", // Enables source maps
 
 	entry: {
 		main: "./src/main/index.jsx", // Entry point of where webpack should start from

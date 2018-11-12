@@ -2,22 +2,20 @@
 
 require("dotenv").config();
 
-const PORT = process.env.PORT || 3000;
-
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
 const express = require('express');
 const app = express();
-const path = require('path');
 const chalk = require('chalk');
 const compression = require('compression');
 const mongoose = require('mongoose');
-const fs = require('fs');
-const https = require('https');
-const http = require('http');
-const util = require('util');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+
+const PORT = process.env.PORT || 3000;
 
 /****************** Sessions ******************/
 
@@ -50,7 +48,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /****************** Serve Static Files --> JS, CSS, IMAGES ETC ******************/
 app.use(express.static(path.join(__dirname, '../public'), { maxAge: cacheTime } ));
 
-
 /****************** Log Requests ******************/
 app.all('*', (req, res, next) => {
 	console.log('--------------------------------------------------------------------------');
@@ -63,7 +60,6 @@ app.all('*', (req, res, next) => {
 
 // Use api.js for any and all requests made to /api
 app.use('/api', require('./api.js'));
-
 
 // Return a 404 page for all other requests - This should be the last get/put/post/delete/all/use call for app
 app.get("*", (req, res) => {
