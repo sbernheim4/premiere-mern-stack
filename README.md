@@ -7,10 +7,12 @@ This stack gets you up and running with dev absolutes. Webpack Dev Server for HM
 
 
 ## Getting Started
-1. Run `npm i -g premiere-mern-stack`
-2. Run `yo premiere-mern-stack`
-3. To connect to MongoDB simply add to the `.env` file  `DB_URI=<YOUR_URI_HERE>`
-4. Run `npm start` to begin your premiere developer experience
+1. Run `npm i -g generator premiere-mern-stack`
+2. Install yeoman `npm i -g yo`
+3. Make your project directory and cd into it `mkdir my_proj && cd my_proj`
+3. Run `yo premiere-mern-stack`
+4. To connect to MongoDB simply add to the `.env` file  `DB_URI=<YOUR_URI_HERE>`
+5. Run `npm start` to begin your premiere developer experience
 
 ## Docker Support
 Out of the box you can dump your project into a docker image to deploy anywhere any way you like.
