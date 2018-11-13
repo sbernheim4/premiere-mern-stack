@@ -7,7 +7,7 @@ This stack gets you up and running with dev absolutes. Webpack Dev Server for HM
 
 
 ## Getting Started
-1. Run `npm i -g generator premiere-mern-stack`
+1. Run `npm i -g generator-premiere-mern-stack`
 2. Install yeoman `npm i -g yo`
 3. Make your project directory and cd into it `mkdir my_proj && cd my_proj`
 3. Run `yo premiere-mern-stack`
