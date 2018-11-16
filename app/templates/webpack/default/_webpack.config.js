@@ -12,15 +12,9 @@ const nano = require("cssnano");
 /* Used to ensure proper order of SCSS/CSS */
 const StyleLintPlugin = require("stylelint-webpack-plugin");
 
-/* Used to uglify bundle.js */
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
-
 const WebpackBar = require('webpackbar');
 
 module.exports = {
-	devtool: "eval", // Enables source maps
-
 	entry: {
 		main: "./src/main/index.jsx", // Entry point of where webpack should start from
 	},
@@ -47,6 +41,7 @@ module.exports = {
 			}
 		]
 	},
+
 	mode: process.env.NODE_ENV || 'development',
 
 	resolve: {
@@ -81,10 +76,6 @@ module.exports = {
 			configFile: "./.stylelintrc",
 			files: "./src/scss/*.scss"
 		}),
-
-
-		// Uglify JS
-		new UglifyJsPlugin(),
 
 		new WebpackBar()
 	]
