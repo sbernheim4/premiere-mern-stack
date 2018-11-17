@@ -54,6 +54,7 @@
   "scripts": {
     "start": "concurrently \"npm run wds\" \"npm run server\"",
     "wds": "./node_modules/.bin/webpack-dev-server --open --hot",
+    "docker": "docker-compose up",
     "server": "nodemon --watch server server/index.js",
     "build": "./node_modules/.bin/webpack",
     "lint": "npm run lintServer; npm run lintCSS",
