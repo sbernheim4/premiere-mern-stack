@@ -91,7 +91,6 @@ module.exports = class extends Generator {
 					"sass-loader": "^7.1.0",
 				}
 			});
-
 			webpackFilePath = path.join(__dirname, './templates/webpack/scss/_webpack.config.js');
 		} else if(this.answers.cssPreprocessor === 'less') {
 			this.fs.extendJSON(this.destinationPath('package.json'), {
@@ -99,12 +98,10 @@ module.exports = class extends Generator {
 					"less-loader": "^4.1.0",
 				}
 			});
-
 			webpackFilePath = path.join(__dirname, './templates/webpack/less/_webpack.config.js');
 		}
 
 		const webpackDest = path.resolve(this.destinationRoot(), 'webpack.config.js');
-
 		fs.copyFileSync(webpackFilePath, webpackDest);
 	}
 
@@ -116,9 +113,8 @@ module.exports = class extends Generator {
 	}
 
 	end() {
-		const webpackPath = this.destinationRoot() + "/webpack";
-
-		function deleteFolderRecursive(path){
+		const logCyan = text => this.log(chalk.cyan(text));
+		const deleteFolderRecursive = (path) => {
 			if (fs.existsSync(webpackPath)) {
 				fs.readdirSync(path).forEach((file) => {
 					const curPath = path + "/" + file;
@@ -134,9 +130,8 @@ module.exports = class extends Generator {
 			}
 		}
 
+		const webpackPath = this.destinationRoot() + "/webpack";
 		deleteFolderRecursive(webpackPath)
-
-		const logCyan = text => this.log(chalk.cyan(text));
 
 		this.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
 		logCyan("Congrats! You're ready to go!");
