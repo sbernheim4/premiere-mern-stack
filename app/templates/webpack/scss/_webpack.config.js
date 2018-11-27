@@ -1,5 +1,7 @@
 const path = require('path');
 
+const glob = require('glob');
+
 /* Used to generate html file from template */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -15,7 +17,7 @@ const WebpackBar = require('webpackbar');
 
 module.exports = {
 	entry: {
-		main: "./src/main/index.jsx", // Entry point of where webpack should start from
+		main: glob.sync("./src/Routes/**/*.jsx"), // Entry point of where webpack should start from
 	},
 	output: {
 		// output build file to /public folder and call the file bundle.js
