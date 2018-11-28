@@ -19,9 +19,9 @@ class Navbar extends Component {
 
 				<hr/>
 
+				<Link to='/subpage'>Subpage</Link>
 				<Link to='/'>Lorem</Link>
 				<Link to='/'>Ipsum</Link>
-				<Link to='/'>Doler</Link>
 			</nav>
 		);
 	}
