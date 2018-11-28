@@ -29,7 +29,9 @@ function generateEntries() {
 }
 
 module.exports = {
-	entry: generateEntries(),
+	entry: {
+		main: "./src/main/index.jsx", // Entry point of where webpack should start from
+	},
 	output: {
 		// output build file to /public folder and call the file bundle.js
 		path: __dirname + "/public",
@@ -79,7 +81,7 @@ module.exports = {
 			template: 'HTMLTemplate.js',
 			dest: 'index.html',
 			inject: false,
-			title: 'React Stack V2'
+			title: 'Premiere Mern Stack'
 		}),
 
 		// Optimizes css by minifying it and removing comments
