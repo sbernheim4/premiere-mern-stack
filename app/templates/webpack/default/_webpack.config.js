@@ -15,21 +15,9 @@ const StyleLintPlugin = require("stylelint-webpack-plugin");
 
 const WebpackBar = require('webpackbar');
 
-function generateEntries() {
-	let x = {};
-	const files = glob.sync("./src/main/Routes/**/*.jsx");
-	files.forEach( (file, index) => {
-		const key = 'page' + index;
-		x[key] = file;
-	});
-	x['index'] = './src/index.jsx';
-
-	return x;
-}
-
 module.exports = {
 	entry: {
-		main: "./src/main/index.jsx", // Entry point of where webpack should start from
+		main: "./src/index.jsx", // Entry point of where webpack should start from
 	},
 	output: {
 		// output build file to /public folder and call the file bundle.js
