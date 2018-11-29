@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Loadable from 'react-loadable';
 
+// Navbar should appear on every page and so should not be lazy loaded
 import Navbar from "../Navbar/Navbar.jsx";
+
+// Import lazy loaded route components
+import { Home, Subpage } from './LazyLoadRoutes.jsx';
 
 class Routes extends Component {
 	constructor(props) {
@@ -13,15 +16,7 @@ class Routes extends Component {
 	}
 
 	render() {
-		const Home = Loadable({
-			loader: () => import('./Home/Home.jsx'),
-			loading: () => <div>Loading...</div>
-		});
 
-		const Subpage = Loadable({
-			loader: () => import ('./Subpage/Subpage.jsx'),
-			loading: () => <div>Loading...</div>
-		})
 
 		return (
 			<div>
