@@ -20,8 +20,9 @@ class Home extends Component {
 				<ul>
 					<li>MERN Stack 😎</li>
 					<li>React Router Client Side Routing</li>
-					<li>Babel 7 + Webpack 4</li>
+					<li>Lazy Loading for Each Route Component</li>
 					<li>CSS/SASS/LESS</li>
+					<li>Babel 7 + Webpack 4</li>
 					<li>Webpack Dev Server + Express API Server</li>
 					<li>HMR for CSS/SASS/LESS</li>
 					<li>Live Reload for HTML/JS/JSX changes</li>

@@ -1,3 +1,7 @@
+/* Here we are binding React (and the client side routing via react-router-dom) to the HTML file to an
+ * element with an ID of `root` and setting up
+ */
+
 import React from "react";
 import ReactDOM from "react-dom";
 

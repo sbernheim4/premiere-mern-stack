@@ -16,24 +16,23 @@ This stack gets you up and running with dev absolutes. Webpack Dev Server for HM
 `npm run docker` will create and run the site inside a docker container. Port 3000 is mapped so you can continue to view the running container locally.
 
 ## Folder Structure
-Below is the folder structure for projects made with this generator with an explanation of what each folder contains or what the file is for. Some
+Below is the folder structure for projects made with this generator with an explanation of what each folder contains or what the file is for. This is not an exhaustive list of every file but outlines most of them and their function. More information can be found in some of the files themselves about what they do and how they work.
 
 ```
 - proj_root/
-    - public/ - This is where files built with webpack are placed
+    - public/ - This is where files built with webpack are placed. This folder is recreated when building with webpack automatically and should not be committed to your codebase
+
     - server/ - Your server code including DB models and API routes
         - db/ - Where all DB models and schemas are stored and registered
         - api.js - Where requests to `/api` are handled
         - index.js - Entrypoint for your server
-    - src/ - Where your components live. Each folder in here can easily become its own separate bundle by modifying `webpack.config.js` and adding additional values for the entrypoint
-        - main/
-            - Home/ - A component called `Home`
-                - home.css
-                - Home.jsx
-            - Navbar/ - A component called `Navbar`
-            - Routes/ - A component called `Routes`, sets up react-router for client side routing
-            - styles/ - Global styles folder
-            - index.jsx - Entrypoint, this is where react binds the component to a div with an ID of root
+    - src/ - Where your components live
+        - Routes/ - A component called `Routes`, sets up react-router for client side routing
+            - index.jsx - Declare all your `Route`s here and the components they map to
+            - LazyLoadRoutes.jsx - Allows you to lazy load your route components to reduce bundle size
+        - Navbar/ - A Navbar component for the site
+        - styles/ - Global styles folder
+        - index.jsx - Entrypoint, this is where react binds the component to a div with an ID of root
     - node_modules/ - a black hole
     - .babelrc - Defines settings for babel transpiling
     - .env - Defines environment variables
