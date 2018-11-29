@@ -28,7 +28,6 @@ module.exports = class extends Generator {
 			{
 				name: 'name',
 				message: "Author's name:",
-				default: gitName
 			},
 			{
 				name: 'email',
