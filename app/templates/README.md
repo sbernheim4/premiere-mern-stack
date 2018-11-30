@@ -3,7 +3,19 @@
 ## About
 Simple enough to build on, complex enough to take you all the way.
 
-This stack gets you up and running with dev absolutes. Webpack Dev Server for HMR integrated with an Express API server. Mongoose and MongoDB for your database, models, and session store. Elegant linting with smart defaults for consistency and all the other goodies that come from a MERN stack using the latest and greatest.
+This stack gets you up and running with dev absolutes. Webpack Dev Server for HMR integrated with an Express API server. Mongoose and MongoDB for your database, Code splitting at the route level for small bundle sizes, elegant linting with smart defaults for consistency and all the other goodies that come from a MERN stack using the latest and greatest. See the full feature list below
+
+## Features
+- React Router Client Side Routing
+- Each Route Generates its Own Bundle for Tiny Bundles and Blazing Fast Speed
+- CSS/SASS/LESS
+- Babel 7 + Webpack 4
+- Webpack Dev Server + Express API Server
+- HMR for CSS/SASS/LESS
+- Live Reload for HTML/JS/JSX changes
+- ESLint
+- Stylelint
+- PostCSS + Autoprefixer
 
 ## Getting Started
 1. Run `npm i -g yo generator-premiere-mern-stack`
