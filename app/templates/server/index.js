@@ -40,8 +40,8 @@ if (process.env.DB_URI) {
 /****************** Server Options ******************/
 const cacheTime = 172800000; // 2 Days in ms - Tells clients to cache static files
 
-app.use(helmet()); // Sets headers for you by default
-app.use(compression()); // Enables gzip compression for your server
+app.use(helmet()); // Sets some good default headers
+app.use(compression()); // Enables gzip compression
 app.use(bodyParser.json()) // Lets express handle JSON encoded data sent on the body of requests
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -49,7 +49,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public'), { maxAge: cacheTime } ));
 
 /****************** Log Requests ******************/
-app.all('*', (req, res, next) => {
+app.use('*', (req, res, next) => {
 	console.log('--------------------------------------------------------------------------');
 	console.log(util.format(chalk.red('%s: %s %s'), 'REQUEST ', req.method, req.path));
 	console.log(util.format(chalk.yellow('%s: %s'), 'QUERY   ', util.inspect(req.query)));
@@ -58,15 +58,20 @@ app.all('*', (req, res, next) => {
 	next();
 });
 
+/****************** Route Handling ******************/
+
+// Check if the route is a valid client side route
+app.all('*', require('./clientSideRoutes.js'));
+
 // Use api.js for any and all requests made to /api
 app.use('/api', require('./api.js'));
 
 // Return a 404 page for all other requests - This should be the last get/put/post/delete/all/use call for app
-app.get("*", (req, res) => {
+app.use("*", (req, res) => {
 	res.status(404).send(`<h1>404 Page Not Found</h1>`);
 });
 
-/****************** Start the DB (if DB_URI env var is set) and Server ******************/
+/****************** Start the Server and DB (if DB_URI env var is set) ******************/
 if (process.env.DB_URI && process.env.DB_URI !== '') {
 	require('./db').then(() => {
 		app.listen(PORT, () => {

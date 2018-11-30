@@ -8,7 +8,7 @@ class Subpage extends Component {
 	render() {
 		return (
 			<div className="subpage">
-				<h1>Welcome to the subpage !!!!</h1>
+				<h1>Welcome to the subpage</h1>
 			</div>
 		);
 	}

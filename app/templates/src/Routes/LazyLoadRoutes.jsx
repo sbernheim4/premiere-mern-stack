@@ -2,7 +2,6 @@
  * will not be loaded until the user navigates to that route. The exported values here are imported
  * in the Routes/index.jsx
  */
-
 /* `loader` refers to the component that will be loaded while `loading` refers to a component to
  * display while the component is loading
  */

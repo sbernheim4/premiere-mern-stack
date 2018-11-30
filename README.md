@@ -19,32 +19,31 @@ This stack gets you up and running with dev absolutes. Webpack Dev Server for HM
 Below is the folder structure for projects made with this generator with an explanation of what each folder contains or what the file is for. Some
 
 ```
-- proj_root/
-    - public/ - This is where files built with webpack are placed
-    - server/ - Your server code including DB models and API routes
-        - db/ - Where all DB models and schemas are stored and registered
-        - api.js - Where requests to `/api` are handled
-        - index.js - Entrypoint for your server
-    - src/ - Where your components live. Each folder in here can easily become its own separate bundle by modifying `webpack.config.js` and adding additional values for the entrypoint
-        - main/
-            - Home/ - A component called `Home`
-                - home.css
-                - Home.jsx
-            - Navbar/ - A component called `Navbar`
-            - Routes/ - A component called `Routes`, sets up react-router for client side routing
-            - styles/ - Global styles folder
-            - index.jsx - Entrypoint, this is where react binds the component to a div with an ID of root
-    - node_modules/ - a black hole
-    - .babelrc - Defines settings for babel transpiling
-    - .env - Defines environment variables
-    - .eslintrc - Defines rules for ESLint
-    - .gitignore - Files to be ignored by git/docker
-    - .stylelintrc - Defines rules for CSS/SCSS/LESS linting
-    - HTMLTemplate.js - HTML template used by webpack to generate static HTML page
-    - package-lock.json - Wizardy
-    - package.json - Info on your package/module
-    - postcss.config.js - Defines rules for PostCSS
-    - webpack.config.js - Defines webpack config
+├──proj_root/
+    ├── public/                     # This is where files built with webpack are placed
+    ├── server/                     # Your server code including DB models and API routes
+    |   ├── db/                     # Where all DB models and schemas are stored and registered
+    |   ├── api.js                  # Where requests to `/api` are handled
+    |   ├── clientSideRoutes.js     # Define client side routes so that the server won't throw a 404 error
+    |   ├── index.js                # Entrypoint for your server
+    ├── src/                        # Where your components live
+    |   ├── Navbar/                 # A component called `Navbar`
+    |   ├── Routes/                 # A component called `Routes`, sets up react router for client side routing
+    |   |   ├── index.jsx           #
+    |   |   ├── LazyLoadRoutes.jsx  #
+    |   ├── styles/                 # Global styles folder
+    |   ├── index.jsx               # Entrypoint, this is where react binds the component to a div with an ID of root
+    ├── node_modules/               # a black hole
+    ├── .babelrc                    # Defines settings for babel transpiling
+    ├── .env                        # Defines environment variables
+    ├── .eslintrc                   # Defines rules for ESLint
+    ├── .gitignore                  # Files to be ignored by git/docker
+    ├── .stylelintrc                # Defines rules for CSS/SCSS/LESS linting
+    ├── HTMLTemplate.js             # HTML template used by webpack to generate static HTML page
+    ├── package#lock.json           # Wizardy
+    ├── package.json                # Info on your package/module
+    ├── postcss.config.js           # Defines rules for PostCSS
+    ├── webpack.config.js           # Defines webpack config
 ```
 
 ## Configuration
