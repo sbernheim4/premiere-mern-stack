@@ -7,7 +7,7 @@ This stack gets you up and running with dev absolutes. Webpack Dev Server for HM
 
 ## Features
 - React Router Client Side Routing
-- Each Route Generates its Own Tiny Bundle for Blazing Fast Speeds
+- Code Splitting at the Route Level for Dynamic Imports
 - CSS/SASS/LESS
 - Babel 7 + Webpack 4
 - Webpack Dev Server + Express API Server
