@@ -20,9 +20,4 @@ class ErrorPage extends Component {
 	}
 }
 
-// Export the ErrorPage component using react-loadable
-// This gives this route it's own bundle and enales dynamic imports
-export default Loadable({
-	loader: () => ErrorPage,
-	loading: () => <div>Loading...</div>
-});
+export default ErrorPage;
