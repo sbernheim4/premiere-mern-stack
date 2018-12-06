@@ -61,6 +61,7 @@
     "server": "nodemon --watch server server/index.js",
     "build:dev": "./node_modules/.bin/webpack",
     "build:prod": "./node_modules/.bin/webpack --mode=production",
+    "build:watch": "./node_modules/.bin/webpack -w",
     "lint": "npm run lintServer; npm run lintCSS",
     "lintCSS": "node_modules/.bin/stylelint --fix src/**/*",
     "lintServer": "node_modules/.bin/eslint --fix server/"

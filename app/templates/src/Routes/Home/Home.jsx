@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Loadable from 'react-loadable';
 import './home.css';
 
 class Home extends Component {
@@ -20,7 +21,7 @@ class Home extends Component {
 				<ul>
 					<li>MERN Stack 😎</li>
 					<li>React Router Client Side Routing</li>
-					<li>Lazy Loading for Each Route Component</li>
+					<li>Lazy Loading/Dynamic Imports for Each Route</li>
 					<li>CSS/SASS/LESS</li>
 					<li>Babel 7 + Webpack 4</li>
 					<li>Webpack Dev Server + Express API Server</li>

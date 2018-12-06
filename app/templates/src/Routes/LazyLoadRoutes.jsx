@@ -18,3 +18,8 @@ export const Subpage = Loadable({
 	loader: () => import ('./Subpage/Subpage.jsx'),
 	loading: () => <div>Loading...</div>
 });
+
+export const ErrorPage = Loadable({
+	loader: () => import ('./404/404.jsx'),
+	loading: () => <div>Loading...</div>
+});

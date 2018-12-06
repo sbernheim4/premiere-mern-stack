@@ -59,12 +59,12 @@ app.use('*', (req, res, next) => {
 });
 
 /****************** Route Handling ******************/
-
-// Check if the route is a valid client side route
-app.all('*', require('./clientSideRoutes.js'));
-
 // Use api.js for any and all requests made to /api
 app.use('/api', require('./api.js'));
+
+app.use('/*', (req, res) => {
+	res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 // Return a 404 page for all other requests - This should be the last get/put/post/delete/all/use call for app
 app.use("*", (req, res) => {
