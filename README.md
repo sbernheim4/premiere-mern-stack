@@ -36,7 +36,7 @@ Below is the folder structure for projects made with this generator with an expl
     ├──server/                     # Server side code including DB models, API routes etc
     |   ├──db/                     # Where all DB models and schemas are stored and registered
     |   ├──api.js                  # Where requests to `/api` are handled
-    |   ├──clientSideRoutes.js     # Define client side routes - See note below on client side and server side routing
+    |   ├──clientSideRoutes.js     # Define client side routes
     |   ├──index.js                # Entrypoint for your server
     ├──src/                        # Where your components live
     |   ├──Navbar/                 # A component called `Navbar`
@@ -54,7 +54,7 @@ Below is the folder structure for projects made with this generator with an expl
     |   |   ├──LazyLoadRoutes.jsx  # Allows you to lazy load your route components to reduce bundle size
     |   ├──styles/                 # Global styles folder
     |   ├──index.jsx               # Entrypoint, this is where react binds the component to a div with an ID of root
-    ├──nodemodules/               # A black hole
+    ├──nodemodules/                # A black hole
     ├──.babelrc                    # Defines settings for babel transpiling
     ├──.env                        # Defines environment variables
     ├──.eslintrc                   # Defines rules for ESLint
@@ -65,6 +65,7 @@ Below is the folder structure for projects made with this generator with an expl
     ├──package.json                # Info on your project and its dependencies
     ├──postcss.config.js           # Defines rules for PostCSS
     ├──webpack.config.js           # Defines webpack config
+```
 
 ## Configuration
 There are many ways you can configure this stack to suit your specific needs
