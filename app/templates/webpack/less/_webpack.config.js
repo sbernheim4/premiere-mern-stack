@@ -39,7 +39,7 @@ module.exports = {
 			// style-loader - injects the css into the browser in a style tag
 			{
 				test: /\.less$/,
-				use: ["style-loader", "postcss-loader", "css-loader", "less-loader"]
+				use: ["style-loader", "css-loader", "postcss-loader", "less-loader"]
 			},
 
 			{
