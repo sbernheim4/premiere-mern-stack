@@ -3,6 +3,8 @@ version: '2'
 services:
   react-stack:
     build: .
+    volumes:
+      - ./:/usr/workdir/
     environment:
       - FORCE_COLOR=1
     env_file:
