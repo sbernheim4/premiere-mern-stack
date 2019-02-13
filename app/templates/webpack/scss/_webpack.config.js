@@ -1,6 +1,8 @@
 const path = require('path');
-
+const webpack = require('webpack');
 const dotenv = require('dotenv');
+const nano = require("cssnano");
+const WebpackBar = require('webpackbar');
 
 /* Used to generate html file from template */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -8,17 +10,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 /* Used to minify the css after it has been written to its output file */
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-const nano = require("cssnano");
-
 /* Used to ensure proper order of SCSS/CSS */
 const StyleLintPlugin = require("stylelint-webpack-plugin");
-
-const WebpackBar = require('webpackbar');
 
 module.exports = () => {
 
 	const env = dotenv.config().parsed;
-	const envKeys = object.keys(env).reduce((prev, next) => {
+	const envKeys = Object.keys(env).reduce((prev, next) => {
 		prev[`process.env.${next}`] = JSON.stringify(env[next]);
 		return prev;
 	}, {});
@@ -98,3 +96,4 @@ module.exports = () => {
 			new webpack.DefinePlugin(envKeys)
 		]
 	}
+}
