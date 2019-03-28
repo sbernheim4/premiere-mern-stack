@@ -7,8 +7,8 @@
     "url": "https://github.com/sbernheim4/premiere-mern-stack/issues"
   },
   "dependencies": {
-    "chalk": "^2.3.2",
-    "yeoman-generator": "^3.1.1"
+    "chalk": "^2.4.2",
+    "yeoman-generator": "^3.2.0"
   },
   "devDependencies": {},
   "files": [
