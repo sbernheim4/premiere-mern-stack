@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Loadable from 'react-loadable';
 
 class ErrorPage extends Component {
 	constructor(props) {

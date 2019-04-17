@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Loadable from 'react-loadable';
 import './home.css';
 
 class Home extends Component {
