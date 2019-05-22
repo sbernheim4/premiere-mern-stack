@@ -32,6 +32,11 @@ const sessionInfo = session({
 });
 
 if (process.env.DB_URI) {
+
+	// Connect to the DB
+	mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
+
+	// Use mongo for session store
 	const sessionStore = MongoStore(session)
 	sessionInfo['store'] = new sessionStore({ mongooseConnection: mongoose.connection });
 }
@@ -65,7 +70,8 @@ app.use('*', (req: Request, _res: Response, next: NextFunction) => {
 
 /****************** Route Handling ******************/
 // Use api.js for any and all requests made to /api
-app.use('/api', require('./api.js'));
+import apiRouter from './api';
+app.use('/api', apiRouter);
 
 app.use('/*', (_req: Request, res: Response) => {
 	res.sendFile(path.join(__dirname, "../public/index.html"));
