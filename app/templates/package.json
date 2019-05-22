@@ -38,7 +38,7 @@
     "@types/passport": "^1.0.0",
     "autoprefixer": "^9.3.1",
     "awesome-typescript-loader": "^5.2.1",
-    "babel-eslint": "^11.0.1",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "concurrently": "^4.0.1",
     "css-loader": "^1.0.1",
