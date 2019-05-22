@@ -2,9 +2,9 @@
  * them the HTML file which will allow the react router to then continue handling the request
  */
 
-const express = require('express');
-const router = express.Router();
-const path = require('path');
+import { Router } from 'express';
+import { join } from 'path';
+const router = Router();
 
 const routes = [
 	'/',
@@ -13,10 +13,11 @@ const routes = [
 
 router.get("*", (req, res, next) => {
 	if (routes.includes(req.url)) {
-		res.sendFile(path.join(__dirname, '../public/index.html'));
+		res.sendFile(join(__dirname, '../public/index.html'));
 	} else {
 		next();
 	}
 });
 
-module.exports = router;
+export default router;
+

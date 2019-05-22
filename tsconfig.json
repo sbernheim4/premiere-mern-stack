@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": { "*": ["node_modules"] },
+		"target": "es2016",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"noUnusedParameters": true,
+		"noImplicitAny": false,
+		"sourceMap": true,
+		"allowSyntheticDefaultImports": true
+	}
+}
+

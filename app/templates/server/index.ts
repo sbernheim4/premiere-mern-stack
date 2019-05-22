@@ -1,41 +1,43 @@
 /* eslint no-undefined: "off" */
 
-require("dotenv").config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-const fs = require('fs');
-const path = require('path');
-const util = require('util');
-const express = require('express');
+import path from 'path';
+import util from 'util';
+import bodyParser from 'body-parser';
+import express from 'express';
+import { Request, Response, NextFunction } from 'express';
+import compression from 'compression';
+import helmet from 'helmet';
+import session from 'express-session';
+import mongoose from 'mongoose';
+import MongoStore from 'connect-mongo';
+import chalk from 'chalk';
+
+// Route Handlers
+import startDb from './db';
+
+
 const app = express();
-const chalk = require('chalk');
-const compression = require('compression');
-const mongoose = require('mongoose');
-const helmet = require('helmet');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
 
 const PORT = process.env.PORT || 3000;
 
 /****************** Sessions ******************/
+const sessionInfo = session({
+	secret: 'jfadhsnfijhu]0i32iekn245u280ur32U0JFL2342fdsaANSL',
+	resave: true,
+	saveUninitialized: true,
+	cookie: { maxAge: 600000 }
+});
 
-// If you have set `DB_URI` env var in your `.env` file then use that DB to store sessions
 if (process.env.DB_URI) {
-	app.use(session({
-		secret: 'ENTER YOUR SECRET HERE FOR SESSIONS',
-		resave: true,
-		saveUninitialized: true,
-		cookie: { maxAge: 600000 },
-		store: new MongoStore({ mongooseConnection: mongoose.connection }) // Use mong to store sessions
-	}));
-} else {
-	app.use(session({
-		secret: 'ENTER YOUR SECRET HERE FOR SESSIONS',
-		resave: true,
-		saveUninitialized: true,
-		cookie: { maxAge: 600000 }
-	}));
+	const sessionStore = MongoStore(session)
+	sessionInfo['store'] = new sessionStore({ mongooseConnection: mongoose.connection });
 }
+
+app.use(sessionInfo);
+
 
 /****************** Server Options ******************/
 const cacheTime = 172800000; // 2 Days in ms - Tells clients to cache static files
@@ -45,11 +47,13 @@ app.use(compression()); // Enables gzip compression
 app.use(bodyParser.json()) // Lets express handle JSON encoded data sent on the body of requests
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 /****************** Serve Static Files --> JS, CSS, IMAGES ETC ******************/
 app.use(express.static(path.join(__dirname, '../public'), { maxAge: cacheTime } ));
 
+
 /****************** Log Requests ******************/
-app.use('*', (req, res, next) => {
+app.use('*', (req: Request, _res: Response, next: NextFunction) => {
 	console.log('--------------------------------------------------------------------------');
 	console.log(util.format(chalk.red('%s: %s %s'), 'REQUEST ', req.method, req.path));
 	console.log(util.format(chalk.yellow('%s: %s'), 'QUERY   ', util.inspect(req.query)));
@@ -58,31 +62,50 @@ app.use('*', (req, res, next) => {
 	next();
 });
 
+
 /****************** Route Handling ******************/
 // Use api.js for any and all requests made to /api
 app.use('/api', require('./api.js'));
 
-app.use('/*', (req, res) => {
+app.use('/*', (_req: Request, res: Response) => {
 	res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 // Return a 404 page for all other requests - This should be the last get/put/post/delete/all/use call for app
-app.use("*", (req, res) => {
+app.use("*", (_req: Request, res: Response) => {
 	res.status(404).send(`<h1>404 Page Not Found</h1>`);
 });
 
 /****************** Start the Server and DB (if DB_URI env var is set) ******************/
 if (process.env.DB_URI && process.env.DB_URI !== '') {
-	require('./db').then(() => {
-		app.listen(PORT, () => {
-			console.log(chalk.green(`Listening on port ${PORT}`));
-		});
-	 }).catch(err => {
+
+	startDb.then(() => {
+
+		startServer();
+
+	}).catch(err => {
+
 		 console.log(err)
+
 	 });
+
 } else {
-	console.log(chalk.red('process.env.DB_URI is undefined (this should be set in your .env file).\nSkipping opening connection to DB.\nSessions are being stored in memory'));
+
+	console.log(chalk.red(`
+		Process.env.DB_URI is undefined (this should be set in your .env file).
+		Skipping opening connection to DB.
+		Sessions are being stored in memory`
+	));
+
+	startServer();
+}
+
+function startServer() {
+
 	app.listen(PORT, () => {
-		console.log(chalk.green(`Listening on port ${PORT}`));
+
+		console.log(chalk.blue(`App is live on process.env.DEV_BASE_URL`));
+
 	});
+
 }
