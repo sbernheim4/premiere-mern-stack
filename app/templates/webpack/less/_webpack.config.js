@@ -5,7 +5,6 @@ const nano = require("cssnano");
 const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const StyleLintPlugin = require("stylelint-webpack-plugin");
 
 const env = dotenv.config().parsed;
 const envKeys = Object.keys(env).reduce((prev, next) => {
@@ -112,12 +111,6 @@ const clientConfig = {
 			cssProcessor: nano,
 			cssProcessorOptions: {discardComments: {removeAll: true} },
 			canPrint: true
-		}),
-
-		// CSS Linter based on rules set in the .stylelintrc file
-		new StyleLintPlugin({
-			configFile: "./.stylelintrc",
-			files: "./src/scss/*.scss"
 		}),
 
 		new WebpackBar(),
