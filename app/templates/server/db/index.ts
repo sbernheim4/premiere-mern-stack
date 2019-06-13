@@ -6,7 +6,7 @@ import chalk from 'chalk';
 
 import './models';
 
-const startDb = function(){
+const startDb = async function() {
 
 	return new Promise((res) => {
 

@@ -85,7 +85,7 @@ app.use("*", (_req: Request, res: Response) => {
 /****************** Start the Server and DB (if DB_URI env var is set) ******************/
 if (process.env.DB_URI && process.env.DB_URI !== '') {
 
-	startDb.then(() => {
+	startDb().then(() => {
 
 		startServer();
 
