@@ -13,6 +13,8 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 	return prev;
 }, {});
 
+const port = envKeys['process.env.PORT'];
+
 const serverConfig = {
 	devtool: 'source-map',
 	target: 'node',
@@ -92,7 +94,7 @@ const clientConfig = {
 		historyApiFallback: true,
 		contentBase: path.join(__dirname, './public'),
 		proxy: {
-			"/api": "http://localhost:3000"
+			"/api": `http://localhost:${port}`
 		}
 	},
 

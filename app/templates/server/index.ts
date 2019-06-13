@@ -21,7 +21,7 @@ import startDb from './db';
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 /****************** Sessions ******************/
 const sessionInfo = session({
