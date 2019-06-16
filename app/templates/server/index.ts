@@ -24,7 +24,7 @@ const PORT = process.env.PORT;
 
 /****************** Sessions ******************/
 const sessionInfo = session({
-	secret: 'jfadhsnfijhu]0i32iekn245u280ur32U0JFL2342fdsaANSL',
+	secret: 'YOUR_SECRET_HERE',
 	resave: true,
 	saveUninitialized: true,
 	cookie: { maxAge: 600000 }
