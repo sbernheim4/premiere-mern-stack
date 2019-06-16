@@ -5,22 +5,6 @@ const nano = require("cssnano");
 const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const glob = require("glob");
-
-const serverFiles = ( () => {
-
-    const tsFiles = new glob('./server/**/*.ts', { sync: true } );
-    const entry = {};
-
-    tsFiles.forEach(file => {
-        const key = file.slice(0, -3);
-        entry[key] = file;
-    });
-
-    return entry;
-
-})();
-
 
 const env = dotenv.config().parsed;
 const envKeys = Object.keys(env).reduce((prev, next) => {
@@ -29,39 +13,6 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 }, {});
 
 const port = envKeys['process.env.PORT'];
-
-const serverConfig = {
-	devtool: 'source-map',
-	target: 'node',
-	entry: serverFiles,
-	output: {
-		path: __dirname + '/public',
-		filename: '[name].js',
-		publicPath: '/'
-	},
-	module: {
-
-		rules: [
-			{
-				test: /\.ts$/,
-				exclude: /node_modules/,
-				use: ['awesome-typescript-loader']
-			}
-		]
-	},
-
-	mode: process.env.NODE_ENV || 'development',
-
-	resolve: {
-		extensions: ['.ts', '.js', '.json']
-	},
-
-	plugins: [
-
-		new webpack.DefinePlugin(envKeys)
-
-	]
-}
 
 const clientConfig = {
 	devtool: 'source-map',
@@ -128,4 +79,4 @@ const clientConfig = {
 	]
 }
 
-module.exports = [clientConfig, serverConfig];
+module.exports = [clientConfig];
