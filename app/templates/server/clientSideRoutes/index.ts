@@ -4,6 +4,7 @@
 
 import { Router } from 'express';
 import { join } from 'path';
+
 const router = Router();
 
 const routes = [
@@ -12,11 +13,17 @@ const routes = [
 ];
 
 router.get("*", (req, res, next) => {
+
 	if (routes.includes(req.url)) {
+
 		res.sendFile(join(__dirname, '../public/index.html'));
+
 	} else {
+
 		next();
+
 	}
+
 });
 
 export default router;

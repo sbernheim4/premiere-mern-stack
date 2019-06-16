@@ -73,7 +73,7 @@ import apiRouter from './api';
 app.use('/api', apiRouter);
 
 app.use('/*', (_req: Request, res: Response) => {
-	res.sendFile(path.join(__dirname, "../public/index.html"));
+	res.sendFile(path.resolve("./public/index.html"));
 });
 
 // Return a 404 page for all other requests - This should be the last get/put/post/delete/all/use call for app
