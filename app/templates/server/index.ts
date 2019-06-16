@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import path from 'path';
-import util from 'util';
 import bodyParser from 'body-parser';
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
@@ -15,8 +14,8 @@ import mongoose from 'mongoose';
 import MongoStore from 'connect-mongo';
 import chalk from 'chalk';
 
-// Route Handlers
 import startDb from './db';
+import logger from './logger';
 
 
 const app = express();
@@ -59,10 +58,10 @@ app.use(express.static(path.join(__dirname, '../public'), { maxAge: cacheTime } 
 
 /****************** Log Requests ******************/
 app.use('*', (req: Request, _res: Response, next: NextFunction) => {
-	console.log('--------------------------------------------------------------------------');
-	console.log(util.format(chalk.red('%s: %s %s'), 'REQUEST ', req.method, req.path));
-	console.log(util.format(chalk.yellow('%s: %s'), 'QUERY   ', util.inspect(req.query)));
-	console.log(util.format(chalk.cyan('%s: %s'), 'BODY    ', util.inspect(req.body)));
+	logger.log({
+		level: 'info',
+		message: chalk.red(`\nREQUEST ${JSON.stringify(req.method)} ${req.path}\n`) + chalk.yellow(`QUERY ${JSON.stringify(req.query)}\n`) + chalk.cyan(`BODY: ${JSON.stringify(req.body)}`)
+	});
 
 	next();
 });

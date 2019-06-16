@@ -60,7 +60,8 @@
     "webpack-cli": "^3.3.4",
     "webpack-dev-server": "^3.7.1",
     "webpackbar": "^3.2.0",
-    "sass-loader": "^7.1.0"
+    "sass-loader": "^7.1.0",
+    "winston": "^3.2.1"
   },
   "engines": {
     "node": ">=8.9.3"
