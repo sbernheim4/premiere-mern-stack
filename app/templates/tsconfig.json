@@ -3,13 +3,21 @@
 		"baseUrl": ".",
 		"paths": { "*": ["node_modules"] },
 		"target": "es2016",
-		"module": "commonjs",
+		"module": "esnext",
+		"jsx": "react",
+		"allowJs": true,
+		"checkJs": true,
 		"moduleResolution": "node",
+		"noImplicitReturns": true,
+		"noImplicitAny": true,
 		"esModuleInterop": true,
 		"noUnusedParameters": true,
-		"noImplicitAny": false,
-		"sourceMap": true,
 		"allowSyntheticDefaultImports": true
-	}
+	},
+    "include": [
+        "./src/**/*.js",
+        "./src/**/*.jsx",
+        "./src/**/*.ts",
+        "./src/**/*.tsx"
+    ]
 }
-
