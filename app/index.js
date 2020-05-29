@@ -58,7 +58,7 @@ module.exports = class extends Generator {
 			}}
 		);
 
-		const webpackFilePath = path.join(__dirname, './templates/_webpack.config.js');
+		const webpackFilePath = path.join(__dirname, './templates/webpack.config.js');
 		const webpackDest = path.resolve(this.destinationRoot(), 'webpack.config.js');
 		fs.copyFileSync(webpackFilePath, webpackDest);
 	}
