@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const nodeExternals = require('webpack-node-externals');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
@@ -84,8 +83,6 @@ const clientConfig = {
 
 		new CssMinimizerPlugin(),
 
-		new WebpackBar(),
-
 		new webpack.DefinePlugin(envKeys)
 	]
 }
@@ -116,9 +113,6 @@ const serverConfig = {
 			}
 		]
 	},
-	plugins: [
-		new WebpackBar(),
-	],
 	resolve: {
 		extensions: ['.js', '.ts']
 	}
