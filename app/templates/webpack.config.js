@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const nodeExternals = require('webpack-node-externals');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const env = dotenv.config().parsed;
 const envKeys = Object.keys(env).reduce((prev, next) => {
@@ -12,7 +13,7 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 	return prev;
 }, {});
 
-const port = envKeys['process.env.PORT'];
+const port = 8080;
 
 const clientConfig = {
 	entry: {
@@ -27,7 +28,7 @@ const clientConfig = {
 			{
 				test: /\.jsx$/,
 				exclude: /node_modules/,
-				use: ["babel-loader", "eslint-loader"]
+				use: ["babel-loader"]
 			},
 			{
 				test: /\.tsx?$/,
@@ -55,16 +56,18 @@ const clientConfig = {
 
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts','.tsx','.css', '.scss', '.sass']
-	},
-
+    },
 	devServer: {
 		historyApiFallback: true,
-        contentBase: __dirname + '/public',
+		static: {
+			directory: path.join(__dirname, 'public'),
+		},
+		compress: true,
+		port,
 		proxy: {
 			"/api": `http://localhost:${port}`
 		}
 	},
-
 	plugins: [
 		new HtmlWebpackPlugin({
 			base: './public/',
@@ -82,7 +85,10 @@ const clientConfig = {
 
 		new CssMinimizerPlugin(),
 
-		new webpack.DefinePlugin(envKeys)
+		new webpack.DefinePlugin(envKeys),
+
+		new ESLintPlugin()
+
 	]
 }
 
@@ -103,7 +109,7 @@ const serverConfig = {
 			{
 				test: /\.jsx$/,
 				exclude: /node_modules/,
-				use: ["babel-loader", "eslint-loader"]
+				use: ["babel-loader"]
 			},
 			{
 				test: /\.ts$/,
@@ -114,7 +120,12 @@ const serverConfig = {
 	},
 	resolve: {
 		extensions: ['.js', '.ts']
-	}
+	},
+	plugins: [
+
+		new ESLintPlugin()
+
+	]
 }
 
 

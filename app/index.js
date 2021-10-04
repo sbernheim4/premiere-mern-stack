@@ -63,13 +63,6 @@ module.exports = class extends Generator {
 		fs.copyFileSync(webpackFilePath, webpackDest);
 	}
 
-	install() {
-		const logGreen = text => this.log(chalk.cyan(text));
-
-		logGreen("Installing dependencies... this might take some time");
-		this.npmInstall();
-	}
-
 	end() {
 		const logCyan = text => this.log(chalk.cyan(text));
 		this.log('🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉');
