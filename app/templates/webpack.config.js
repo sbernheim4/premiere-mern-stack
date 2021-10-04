@@ -1,12 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-const nano = require("cssnano");
 const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const nodeExternals = require('webpack-node-externals');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
 
 const env = dotenv.config().parsed;
 const envKeys = Object.keys(env).reduce((prev, next) => {
@@ -21,9 +21,7 @@ const clientConfig = {
 		main: "./src/index.jsx", // Entry point of where webpack should start from
 	},
 	output: {
-        path: path.join(__dirname, "public"),
         publicPath: '/',
-		filename: "[name].js"
 	},
 	module: {
 		rules: [
@@ -45,7 +43,7 @@ const clientConfig = {
 			// style-loader - injects the css into the browser in a style tag
 			{
 				test: /\.scss$/,
-				use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
+				use: ['style-loader', "css-loader", "postcss-loader", "sass-loader"]
 			},
 
 			{
@@ -84,11 +82,7 @@ const clientConfig = {
 			files: './src/**/*.scss'
 		}),
 
-		new OptimizeCssAssetsPlugin({
-			cssProcessor: nano,
-			cssProcessorOptions: { discardComments: { removeAll: true } },
-			canPrint: true
-		}),
+		new CssMinimizerPlugin(),
 
 		new WebpackBar(),
 
