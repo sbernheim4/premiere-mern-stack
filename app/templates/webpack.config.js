@@ -60,7 +60,7 @@ const clientConfig = {
 	devServer: {
 		historyApiFallback: true,
 		static: {
-			directory: path.join(__dirname, 'public'),
+			directory: path.join(__dirname, 'dist'),
 		},
 		compress: true,
 		port,
@@ -70,7 +70,7 @@ const clientConfig = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			base: './public/',
+			base: './dist/',
 			template: path.join(__dirname, 'HTMLTemplate.js'),
 			dest: 'index.html',
 			inject: false,

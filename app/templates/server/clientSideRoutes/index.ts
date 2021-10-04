@@ -16,7 +16,7 @@ router.get("*", (req, res, next) => {
 
 	if (routes.includes(req.url)) {
 
-		res.sendFile(join(__dirname, '../public/index.html'));
+		res.sendFile(join(__dirname, '../dist/index.html'));
 
 	} else {
 

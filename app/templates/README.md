@@ -23,7 +23,7 @@ Below is the folder structure for projects made with this generator with an expl
 
 ```
 ├──proj_root/
-    ├──public/                     # This is where files built with webpack are kept
+    ├──dist/                       # This is where files built with webpack are kept
     ├──server/                     # Server side code including API routes
     |   ├──api.js                  # Where requests to `/api` are handled
     |   ├──clientSideRoutes.js     # Define client side routes
