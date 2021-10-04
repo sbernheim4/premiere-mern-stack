@@ -13,10 +13,9 @@ import session from 'express-session';
 import chalk from 'chalk';
 import logger from './logger';
 
-
 const app = express();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 /****************** Sessions ******************/
 const sessionInfo = session({
@@ -39,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 /****************** Serve Static Files --> JS, CSS, IMAGES ETC ******************/
-app.use(express.static(path.join(__dirname, '../public'), { maxAge: cacheTime } ));
+app.use(express.static(path.join(__dirname, '../dist'), { maxAge: cacheTime } ));
 
 
 /****************** Log Requests ******************/
@@ -56,10 +55,11 @@ app.use('*', (req: Request, _res: Response, next: NextFunction) => {
 /****************** Route Handling ******************/
 // Use api.js for any and all requests made to /api
 import apiRouter from './api';
+
 app.use('/api', apiRouter);
 
 app.use('/*', (_req: Request, res: Response) => {
-	res.sendFile(path.resolve("./public/index.html"));
+	res.sendFile(path.resolve("./dist/index.html"));
 });
 
 // Return a 404 page for all other requests - This should be the last get/put/post/delete/all/use call for app
@@ -71,7 +71,7 @@ function startServer() {
 
 	app.listen(PORT, () => {
 
-		console.log(chalk.blue(`App is live on ${process.env.DEV_BASE_URL}`));
+		console.log(chalk.blue(`App is live on ${PORT}`));
 
 	});
 
