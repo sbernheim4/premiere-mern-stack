@@ -6,7 +6,6 @@ const nodeExternals = require('webpack-node-externals');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-
 const env = dotenv.config().parsed;
 const envKeys = Object.keys(env).reduce((prev, next) => {
 	prev[`process.env.${next}`] = JSON.stringify(env[next]);
