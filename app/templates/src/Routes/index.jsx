@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 // Navbar should appear on every page and so should not be lazy loaded
 import Navbar from "../Navbar/Navbar.jsx";
@@ -13,20 +13,21 @@ import Navbar from "../Navbar/Navbar.jsx";
 // Import lazy loaded route components
 import { Home, Subpage, ErrorPage } from './LazyLoadRoutes.jsx';
 
-const Routes = () => {
+const MyRoutes = () => {
 	return (
 		<div>
 			<Navbar />
 
-			<Switch>
-				<Route exact path='/' component={Home}/>
-				<Route path='/subpage' component={Subpage}/>
-				<Route component={ErrorPage}/> {/* This route is run when no matches are found - It's your 404 fallbback */}
-			</Switch>
+			<Routes>
+				<Route path='/' element={<Home />}/>
+				<Route path='/subpage' element={<Subpage />}/>
+				<Route element={<ErrorPage/>} />
+			</Routes>
 
 			{/* <Link /> elements are in Navbar.jsx */}
 		</div>
 	);
 };
 
-export default Routes;
+export default MyRoutes;
+
