@@ -45,7 +45,10 @@ app.use(express.static(path.join(__dirname, '../dist'), { maxAge: cacheTime } ))
 app.use('*', (req: Request, _res: Response, next: NextFunction) => {
 	logger.log({
 		level: 'info',
-		message: chalk.red(`\nREQUEST ${JSON.stringify(req.method)} ${req.path}\n`) + chalk.yellow(`QUERY ${JSON.stringify(req.query)}\n`) + chalk.cyan(`BODY: ${JSON.stringify(req.body)}`)
+		message:
+            chalk.red(`\nREQUEST ${JSON.stringify(req.method)} ${req.path}\n`) +
+            chalk.yellow(`QUERY ${JSON.stringify(req.query)}\n`) +
+            chalk.cyan(`BODY: ${JSON.stringify(req.body)}`)
 	});
 
 	next();
