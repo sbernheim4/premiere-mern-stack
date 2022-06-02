@@ -58,7 +58,7 @@
     "install": "^0.13.0",
     "node-sass": "^6.0.1",
     "nodemon": "^2.0.14",
-    "npm": "^7.24.2",
+    "npm": "^8.11.0",
     "postcss-loader": "^6.2.0",
     "sass-loader": "^12.3.0",
     "style-loader": "^3.3.1",
